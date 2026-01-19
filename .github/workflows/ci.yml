@@ -1,4 +1,4 @@
-name: CI Smoke Test
+name: CI Node Smoke
 
 on:
   push:
@@ -6,8 +6,14 @@ on:
   pull_request:
 
 jobs:
-  smoke:
+  node:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "CI is working 🚀"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: node -v
+      - run: npm -v
