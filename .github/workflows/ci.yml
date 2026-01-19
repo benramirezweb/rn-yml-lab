@@ -1,5 +1,11 @@
 name: CI - env demo
-on: [push]
+on:
+  push:
+    branches:
+      - main
+      - "INTL/**"
+      - "US/**"
+      - "feature/**"
 
 jobs:
   env:
