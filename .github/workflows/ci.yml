@@ -1,23 +1,13 @@
-name: RN Expo CI (green)
+name: CI Smoke Test
 
 on:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main ]
 
 jobs:
-  ci:
+  smoke:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-
-      - run: node -v
-      - run: npm -v
-      - run: ls -la
-      - run: echo "CI OK"
+      - run: echo "CI is working 🚀"
