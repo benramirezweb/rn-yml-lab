@@ -1,19 +1,13 @@
-name: CI Node Smoke
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
+name: CI - env demo
+on: [push]
 
 jobs:
-  node:
+  env:
     runs-on: ubuntu-latest
+    env:
+      APP_ENV: local
+      TENANT: intl
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - run: node -v
-      - run: npm -v
+      - run: |
+          echo "APP_ENV=$APP_ENV"
