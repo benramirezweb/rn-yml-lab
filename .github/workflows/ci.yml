@@ -6,7 +6,8 @@ on:
       - "INTL/**"
       - "US/**"
       - "feature/**"
-
+  pull_request:
+    branches: [ main ]
 jobs:
   env:
     runs-on: ubuntu-latest
