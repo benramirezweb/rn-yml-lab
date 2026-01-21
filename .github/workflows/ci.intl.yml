@@ -3,12 +3,7 @@ on:
   workflow_call:
 
 jobs:
-  build_test:
-    runs-on: ubuntu-latest
-    env:
-      TENANT: intl
-      APP_ENV: local
-    steps:
-      - uses: actions/checkout@v4
-      - run: echo "TENANT=$TENANT BRANCH=$GITHUB_REF_NAME SHA=$GITHUB_SHA"
-      # aquí pones steps reales (npm ci / test / build)
+  common:
+    uses: ./.github/workflows/ci.common.yml
+    with:
+      tenant: intl

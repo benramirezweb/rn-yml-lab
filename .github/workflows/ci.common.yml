@@ -1,0 +1,17 @@
+name: CI - common
+on:
+  workflow_call:
+    inputs:
+      tenant:
+        required: true
+        type: string
+
+jobs:
+  common:
+    runs-on: ubuntu-latest
+    env:
+      TENANT: ${{ inputs.tenant }}
+      APP_ENV: local
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "TENANT=$TENANT BRANCH=$GITHUB_REF_NAME SHA=$GITHUB_SHA"
