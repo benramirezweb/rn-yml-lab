@@ -52,3 +52,4 @@ jobs:
           echo "TENANT=$TENANT"
           echo "BRANCH=${GITHUB_REF_NAME}"
           echo "SHA=${GITHUB_SHA}"
+
