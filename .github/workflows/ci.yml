@@ -1,5 +1,4 @@
 name: CI - multi tenant
-
 on:
   push:
     branches: [ main, "INTL/**", "US/**" ]
