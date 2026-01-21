@@ -8,7 +8,11 @@ on:
       - "US/**"
       - "feature/**"
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+      - "INTL/**"
+      - "US/**"
+      - "feature/**"
 
 jobs:
   env_intl:
