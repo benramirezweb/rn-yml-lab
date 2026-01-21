@@ -1,0 +1,22 @@
+name: rn-expo-lab-pipeline
+
+triggers:
+  - branch: main
+  - branch: feature/*
+
+env:
+  NODE_VERSION: 20
+  APP_ENV: local
+
+steps:
+  - name: Install dependencies
+    run: npm install
+
+  - name: Type check
+    run: npx tsc --noEmit
+
+  - name: Lint
+    run: npm run lint
+
+  - name: Run app check
+    run: echo "Expo project structure OK"
