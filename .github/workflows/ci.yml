@@ -1,59 +1,16 @@
-name: CI - env demo
+name: CI - multi tenant
 
 on:
   push:
-    branches:
-      - main
-      - "INTL/**"
-      - "US/**"
-      - "feature/**"
+    branches: [ main, "INTL/**", "US/**" ]
   pull_request:
-    branches:
-      - main
-      - "INTL/**"
-      - "US/**"
-      - "feature/**"
+    branches: [ main ]
 
 jobs:
-  env_intl:
+  intl:
     if: startsWith(github.ref_name, 'INTL/')
-    runs-on: ubuntu-latest
-    env:
-      APP_ENV: local
-      TENANT: intl
-    steps:
-      - uses: actions/checkout@v4
-      - run: |
-          echo "APP_ENV=$APP_ENV"
-          echo "TENANT=$TENANT"
-          echo "BRANCH=${GITHUB_REF_NAME}"
-          echo "SHA=${GITHUB_SHA}"
+    uses: ./.github/workflows/ci.intl.yml
 
-  env_us:
-    if: startsWith(github.ref_name, 'US/')
-    runs-on: ubuntu-latest
-    env:
-      APP_ENV: local
-      TENANT: us
-    steps:
-      - uses: actions/checkout@v4
-      - run: |
-          echo "APP_ENV=$APP_ENV"
-          echo "TENANT=$TENANT"
-          echo "BRANCH=${GITHUB_REF_NAME}"
-          echo "SHA=${GITHUB_SHA}"
-
-  env_main:
-    if: github.ref_name == 'main'
-    runs-on: ubuntu-latest
-    env:
-      APP_ENV: local
-      TENANT: us
-    steps:
-      - uses: actions/checkout@v4
-      - run: |
-          echo "APP_ENV=$APP_ENV"
-          echo "TENANT=$TENANT"
-          echo "BRANCH=${GITHUB_REF_NAME}"
-          echo "SHA=${GITHUB_SHA}"
-
+  us:
+    if: startsWith(github.ref_name, 'US/') || github.ref_name == 'main'
+    uses: ./.github/workflows/ci.us.yml
